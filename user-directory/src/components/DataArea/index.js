@@ -99,3 +99,5 @@ const DataArea = () => {
         </DataAreaContext.Provider>
     );
 }
+
+export default DataArea;
