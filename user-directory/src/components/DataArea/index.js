@@ -29,3 +29,36 @@ const DataArea = () => {
                 order: "descend"
             })
         }
+
+        const compareFnc = (a, b) => {
+            if (developerState.order === "ascend") {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "name") {
+                    return a[heading].first.localeCompare(b[heading].first);
+                } else {
+                    return b[heading] - a[heading];
+                }
+            } else {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "name") {
+                    return b[heading].first.localeCompare(a[heading].first);
+                } else {
+                    return b[heading] - a[heading];
+                }
+            }
+        }
+        const sortedUsers = developerState.filteredUsers.sort(compareFnc);
+
+        setDeveloperState({
+            ...developerState,
+            filteredUsers: sortedUsers
+        });
+
+    };
+}
